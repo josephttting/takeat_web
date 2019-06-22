@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let restaurant of restaurantList">
+      <a routerLink="/restaurant/{{restaurant._id}}" class="clickable-card">
+        <div class="card mx-1 my-3">
+          <img width="100%" src="{{ restaurant.cover_image }}" />
+          <div class="card-body">
+            <h4 class="card-title">{{ restaurant.name }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted" style="font-size: 12px;">
+              <i class="fa fa-home"></i> {{ restaurant.address }}
+            </h6>
+            <h6 class="card-subtitle mb-2 text-muted" style="font-size: 12px;">
+              <i class="fa fa-phone"></i> {{ restaurant.phone }}
+            </h6>
+            <p class="card-text">Description: {{ restaurant.description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container-flude">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="center-cropped">
+        <img src="{{ restaurant.cover_image }}" />
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link clickable-nav-link" routerLink="/home"><i class="fa fa-chevron-left" style="color: #000000"></i></a>
+        </li>
+        <li class="nav-item" *ngFor="let menu of menuList">
+          <a class="nav-link clickable-nav-link" (click)="ShowDishes(menu._id)">{{ menu.name }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12 m-2" *ngFor="let dish of dishList">
+          <a routerLink="/restaurant/{{restaurant._id}}" class="clickable-card" (click)="OrderDish(dish)">
+            <div class="card mx-2 my-3">
+              <img width="100%" src="{{ dish.image }}" />
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <h4 class="card-title">{{ dish.name }}</h4>
+                  </div>
+                  <div class="col-6">
+                    <h3 class="card-subtitle mb-2 text-muted text-right">$ {{ dish.price }}</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <p class="card-text">{{ dish.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 text-center">
+      <button type="button" class="btn btn-success" ng-disabled="dishCount === 0" routerLink="/order">Check Your Order <span class="badge badge-danger" ng-if="dishCount > 0">{{dishCount}}</span></button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="container-fluded">
+  <div class="row justify-content-center">
+    <div class="col-8 px-1 py-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Restaurant Detail</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="email" class="form-control" [(ngModel)]="restaurant.name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Desciprtion</label>
+              <input type="email" class="form-control" [(ngModel)]="restaurant.description" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Address</label>
+              <input type="email" class="form-control" [(ngModel)]="restaurant.address" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Phone</label>
+              <input type="email" class="form-control" [(ngModel)]="restaurant.phone" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-success m-2" (click)="SaveRestaurant()">Save</button>
+            </div>
+          </form>
+          <div class="card my-3" *ngFor="let order of restaurant.orders">
+            <div class="card-body">
+              <div class="col-12">
+                <div class="row my-3">
+                  <div class="col-6 text-muted">
+                    Orderer:
+                  </div>
+                  <div class="col-6 text-right text-muted">
+                    {{order.orderer_name}}
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-6 text-muted">
+                    Address:
+                  </div>
+                  <div class="col-6 text-right text-muted">
+                    {{order.address}}
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-6 text-muted">
+                    Phone:
+                  </div>
+                  <div class="col-6 text-right text-muted">
+                    {{order.phone}}
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-6 text-muted">
+                    Order Time:
+                  </div>
+                  <div class="col-6 text-right text-muted">
+                    {{ order.create_time | date:'yyyy-MM-dd hh:mm:ss' }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <br />
+                  </div>
+                </div>
+              </div>
+              <h5 class="card-title">Content</h5>
+              <div class="col-12">
+                <div class="row">
+                  <ul class="list-group list-group-flush col-12">
+                    <li class="list-group-item" *ngFor="let dish of order.dishes">
+                      <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6 text-right">
+                          <h5>{{ dish.name }}</h5>
+                          <h6 class="text-muted">$ {{ dish.price }}</h6>
+                          <h6 class="text-muted">{{ dish.quantity }}</h6>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="row">
+                        <div class="col-6 text-muted">
+                          <h5>Total</h5>
+                        </div>
+                        <div class="col-6 text-right">
+                          <h5>$ {{ order.total_price }}</h5>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card my-3">
+        <div class="card-header">
+          <h5 class="card-title">Dish List</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dish of this.dishList">
+                    <td><input type="text" class="form-control" [(ngModel)]="dish.name" [ngModelOptions]="{standalone: true}"></td>
+                    <td><input type="number" class="form-control" [(ngModel)]="dish.price" [ngModelOptions]="{standalone: true}"></td>
+                    <td class="text-right"><button type="button" class="btn btn-success" (click)="UpdateDish(dish)">Save</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
